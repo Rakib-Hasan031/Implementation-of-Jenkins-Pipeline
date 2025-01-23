@@ -6,7 +6,10 @@ pipeline {
         docker { image 'maven:3.8.1-adoptopenjdk-11' }
       }
       steps {
-        sh 'mvn --version'
+        echo 'Checking Maven version...'
+        sh 'mvn --version' // Verify Maven is working
+        echo 'Running Maven clean and package...'
+        sh 'mvn clean package' // Build the application
       }
     }
     stage('Front-end') {
