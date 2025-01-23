@@ -8,8 +8,6 @@ pipeline {
       steps {
         echo 'Checking Maven version...'
         sh 'mvn --version' // Verify Maven is working
-        echo 'Running Maven clean and package...'
-        sh 'mvn clean package' // Build the application
       }
     }
     stage('Front-end') {
