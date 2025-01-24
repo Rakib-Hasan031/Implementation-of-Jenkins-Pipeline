@@ -1,4 +1,4 @@
-pipeline {
+onpipeline {
   agent none
   stages {
     stage('Back-end') {
@@ -7,7 +7,7 @@ pipeline {
       }
       steps {
         echo 'Checking Maven version...'
-        sh 'mvn clean package' // Verify Maven is working
+        sh 'mvn --version' // Verify Maven is working
       }
     }
     stage('Front-end') {
