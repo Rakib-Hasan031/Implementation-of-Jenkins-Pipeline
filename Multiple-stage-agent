@@ -1,4 +1,4 @@
-onpipeline {
+pipeline {
   agent none
   stages {
     stage('Back-end') {
@@ -6,8 +6,7 @@ onpipeline {
         docker { image 'maven:3.8.1-adoptopenjdk-11' }
       }
       steps {
-        echo 'Checking Maven version...'
-        sh 'mvn --version' // Verify Maven is working
+        sh 'mvn --version'
       }
     }
     stage('Front-end') {
