@@ -10,7 +10,7 @@ pipeline {
       steps {
         sh 'echo passed'
         // Uncomment the next line to enable the checkout of your Git repository
-        git branch: 'main', url: 'https://github.com/Rakib-Hasan031/Implementation-of-Jenkins-Pipeline.git'
+        //git branch: 'main', url: 'https://github.com/Rakib-Hasan031/Implementation-of-Jenkins-Pipeline.git'
       }
     }
     
