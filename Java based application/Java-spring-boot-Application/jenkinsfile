@@ -1,4 +1,4 @@
-pipeline {
+alpipeline {
   agent {
     docker {
       image 'maven:3.8.1-openjdk-11'
@@ -23,7 +23,7 @@ pipeline {
       environment {
         DOCKER_IMAGE = "rakibhasan031/ultimate-cicd:${BUILD_NUMBER}"
         // DOCKERFILE_LOCATION = Java based application/Java-spring-boot-Application/Dockerfile"
-        REGISTRY_CREDENTIALS = credentials('docker-cred')
+        REGISTRY_CREDENTIALS = credentials('docker-credential')
       }
       steps {
         script {
