@@ -48,6 +48,31 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
 sudo apt-get update
 sudo apt-get install jenkins
 ```
+## Docker Slave Configuration
+
+Run the below command to Install Docker
+
+```
+sudo apt update
+sudo apt install docker.io
+```
+ 
+### Grant Jenkins user and Ubuntu user permission to docker deamon.
+
+```
+sudo su - 
+usermod -aG docker jenkins
+usermod -aG docker ubuntu
+systemctl restart docker
+```
+
+Once you are done with the above steps, it is better to restart Jenkins.
+
+```
+http://<ec2-instance-public-ip>:8080/restart
+```
+
+The docker agent configuration is now successful.
 
 **Note: ** By default, Jenkins will not be accessible to the external world due to the inbound traffic restriction by AWS. Open port 8080 in the inbound traffic rules as show below.
 
