@@ -43,7 +43,7 @@ pipeline {
         withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
           sh '''
             git config user.email "hasanrakib373@gmail.com"
-            git config user.name "Rakib Hasan"
+            git config user.name "rakibhasan031"
             sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" "Java based application/Mainfest-Repo/deployment.yml"
             git add "Java based application/Mainfest-Repo/deployment.yml"
             git commit -m "Update deployment image to version ${BUILD_NUMBER}"
