@@ -37,13 +37,13 @@ pipeline {
     stage('Update Deployment File') {
       environment {
         GIT_REPO_NAME = "Implementation-of-Jenkins-Pipeline"
-        GIT_USER_NAME = "rakibhasan031"
+        GIT_USER_NAME = "Rakib-Hasan031"
       }
       steps {
         withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
           sh '''
             git config user.email "hasanrakib373@gmail.com"
-            git config user.name "rakibhasan031"
+            git config user.name "Rakib Hasan"
             sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" "Java based application/Mainfest-Repo/deployment.yml"
             git add "Java based application/Mainfest-Repo/deployment.yml"
             git commit -m "Update deployment image to version ${BUILD_NUMBER}"
