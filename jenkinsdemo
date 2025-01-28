@@ -18,6 +18,16 @@ pipeline {
         sh 'cd "Java based application/Java-spring-boot-Application" && mvn clean package'
       }
     }
+    stage('Static Code Analysis') {
+      environment {
+        SONAR_URL = "http://13.126.29.226:9000"
+      }
+      steps {
+        withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+          sh 'cd "Java based application/Java-spring-boot-Application" && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
+        }
+      }
+    }
     stage('Build and Push Docker Image') {
       environment {
         DOCKER_IMAGE = "rakibhasan031/ultimate-cicd:${BUILD_NUMBER}"
