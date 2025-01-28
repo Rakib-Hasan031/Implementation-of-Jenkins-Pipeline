@@ -5,26 +5,15 @@ pipeline {
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
   }
-  options {
-     timeout(time: 1, unit: 'HOURS')  // Increase timeout as needed
-    }
   stages {
-    stages {
-        stage('Cleanup') {
-            steps {
-                script {
-                    deleteDir()  // Clean up the workspace before proceeding
-                }
-            }
-        }
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        //git branch: 'main', url: 'https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero.git'
       }
     }
     stage('Build and Test') {
       steps {
+        sh 'ls -ltr'
         // build the project and create a JAR file
         sh 'cd "Java based application/Java-spring-boot-Application" && mvn clean package'
       }
