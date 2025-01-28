@@ -3,6 +3,12 @@ pipeline {
     docker {image 'node:16-alpine'}
   }
 stages {
+  options {
+    skipDefaultCheckout(true)
+    parallelsAlwaysFailFast()
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(numToKeepStr: ‘20’, artifactNumToKeepStr: ‘20’))
+  }
   stage ('Test') {
     steps {
       sh 'node --version'
