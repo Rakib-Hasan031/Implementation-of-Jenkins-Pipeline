@@ -9,6 +9,14 @@ pipeline {
      timeout(time: 1, unit: 'HOURS')  // Increase timeout as needed
     }
   stages {
+    stages {
+        stage('Cleanup') {
+            steps {
+                script {
+                    deleteDir()  // Clean up the workspace before proceeding
+                }
+            }
+        }
     stage('Checkout') {
       steps {
         sh 'echo passed'
