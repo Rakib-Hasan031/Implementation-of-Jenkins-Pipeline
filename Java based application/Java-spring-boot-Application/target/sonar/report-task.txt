@@ -2,5 +2,5 @@ projectKey=com.Rakib:spring-boot-demo
 serverUrl=http://3.109.217.192:9000
 serverVersion=9.4.0.54424
 dashboardUrl=http://3.109.217.192:9000/dashboard?id=com.Rakib%3Aspring-boot-demo
-ceTaskId=AZS3V5w8pOXcHpy0ARqM
-ceTaskUrl=http://3.109.217.192:9000/api/ce/task?id=AZS3V5w8pOXcHpy0ARqM
+ceTaskId=AZS3WmKppOXcHpy0ARqN
+ceTaskUrl=http://3.109.217.192:9000/api/ce/task?id=AZS3WmKppOXcHpy0ARqN
