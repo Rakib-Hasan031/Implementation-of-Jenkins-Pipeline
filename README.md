@@ -87,6 +87,21 @@ The docker agent configuration is now successful.
 4. Select "Pipeline"
 5. Click "OK"
 
+## Next Steps
+
+### Configure a Sonar Server locally
+
+```
+apt install unzip
+adduser sonarqube
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.4.0.54424.zip
+unzip *
+chmod -R 755 /home/sonarqube/sonarqube-9.4.0.54424
+chown -R sonarqube:sonarqube /home/sonarqube/sonarqube-9.4.0.54424
+cd sonarqube-9.4.0.54424/bin/linux-x86-64/
+./sonar.sh start
+```
+
 ## Step 3: Configure Pipeline Stages
 
 Here's a complete Jenkinsfile with all stages:
