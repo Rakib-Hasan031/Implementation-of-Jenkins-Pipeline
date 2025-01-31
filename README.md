@@ -76,7 +76,7 @@ Install the following plugins from Jenkins **Dashboard > Manage Jenkins > Plugin
 4. Kubernetes Continuous Deploy (ArgoCD) Plugin
 5. Docker Pipeline Plugin
 6. SonarQube Scanner Plugin
-
+[![image.png](https://i.postimg.cc/kX4hwMpL/image.png)](https://postimg.cc/c6pmLWZc)
 ## Step 2: Create Jenkins Pipeline Job
 
 The docker agent configuration is now successful.
