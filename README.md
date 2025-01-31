@@ -42,7 +42,6 @@ sudo apt-get update
 sudo apt-get install jenkins
 ```
 [![869-CA117-D26-B-478-B-A206-68489-BD02256.png](https://i.postimg.cc/FHY8FFb0/869-CA117-D26-B-478-B-A206-68489-BD02256.png)](https://postimg.cc/LJMNNpbs)
-
 ## Docker Slave Configuration
 
 Run the below command to Install Docker in Ubuntu Machine
