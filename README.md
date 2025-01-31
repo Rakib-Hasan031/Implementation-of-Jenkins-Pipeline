@@ -1,8 +1,9 @@
 # Setting Up Jenkins CI/CD Pipeline with Kubernetes
 
-A step-by-step guide to implement a CI/CD pipeline using Jenkins, Docker Agent, Maven, SonarQube, Argo CD, Helm and Kubernetes.
+The project is a complete DevOps pipeline designed to automate and optimize the software development lifecycle, from code integration to deployment and monitoring. It incorporates cutting-edge tools and technologies to implement robust Continuous Integration (CI) and Continuous Deployment (CD) processes. GitHub serves as the source code repository, while Jenkins orchestrates the CI/CD workflows. Code quality and security are ensured using SonarQube and Trivy, respectively, while Docker manages containerization. ArgoCD handles deployment to Kubernetes, enabling efficient application delivery to production environments.
 
 ![CI/CD Pipeline Architecture](https://user-images.githubusercontent.com/43399466/228301952-abc02ca2-9942-4a67-8293-f76647b6f9d8.png)
+
 
 ## Step 1: Install Required Jenkins Plugins
 
