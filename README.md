@@ -8,6 +8,13 @@ Step1 : Create a jenkins machine using terraform script
 Create 1 Master machine on AWS with 2CPU, 8GB of RAM (t2.large) and 25 GB of storage & Open the below ports in security group of master machine and also attach same security group to Jenkins worker node,
 [![1Capture.png](https://i.postimg.cc/GhgXVJ1Q/1Capture.png)](https://postimg.cc/zVWwRhvb)
 
+**Note: ** By default, Jenkins will not be accessible to the external world due to the inbound traffic restriction by AWS. Open port 8080 in the inbound traffic rules as show below.
+
+- EC2 > Instances > Click on <Instance-ID>
+- In the bottom tabs -> Click on Security
+- Security groups
+- Add inbound traffic rules as shown in the image
+- 
 [![2Capture.png](https://i.postimg.cc/sD1F04Lj/2Capture.png)](https://postimg.cc/ykqrDcBt)
 
 ### Install Jenkins.
@@ -114,15 +121,6 @@ Install the following plugins from Jenkins **Dashboard > Manage Jenkins > Plugin
 
 [![image.png](https://i.postimg.cc/jjghDys5/image.png)](https://postimg.cc/Z9NNgBvt)
 ## Step 2: Create Jenkins Pipeline Job
-
-The docker agent configuration is now successful.
-
-**Note: ** By default, Jenkins will not be accessible to the external world due to the inbound traffic restriction by AWS. Open port 8080 in the inbound traffic rules as show below.
-
-- EC2 > Instances > Click on <Instance-ID>
-- In the bottom tabs -> Click on Security
-- Security groups
-- Add inbound traffic rules as shown in the image (you can just allow TCP 8080 as well, in my case, I allowed `All traffic`).
 
 1. Go to Jenkins Dashboard
 2. Click "New Item"
