@@ -90,8 +90,13 @@ Install the following plugins from Jenkins **Dashboard > Manage Jenkins > Plugin
 4. Kubernetes Continuous Deploy (ArgoCD) Plugin
 5. Docker Pipeline Plugin
 6. SonarQube Scanner Plugin
-[![image.png](https://i.postimg.cc/kX4hwMpL/image.png)](https://postimg.cc/c6pmLWZc)
 [![image.png](https://i.postimg.cc/vT6xHVmp/image.png)](https://postimg.cc/BP4nmtHg)
+
+1. Add Github credentials to push updated code from the pipeline:
+2.  Add Sonarqube credentials for code scaning & vulnerability checking
+3.  Add credentials for docker login to push docker image
+[![image.png](https://i.postimg.cc/kX4hwMpL/image.png)](https://postimg.cc/c6pmLWZc)
+
 [![image.png](https://i.postimg.cc/jjghDys5/image.png)](https://postimg.cc/Z9NNgBvt)
 ## Step 2: Create Jenkins Pipeline Job
 
