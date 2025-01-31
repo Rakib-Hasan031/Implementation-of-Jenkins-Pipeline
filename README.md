@@ -41,6 +41,8 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
 sudo apt-get update
 sudo apt-get install jenkins
 ```
+[![869-CA117-D26-B-478-B-A206-68489-BD02256.png](https://i.postimg.cc/FHY8FFb0/869-CA117-D26-B-478-B-A206-68489-BD02256.png)](https://postimg.cc/LJMNNpbs)
+
 ## Docker Slave Configuration
 
 Run the below command to Install Docker in Ubuntu Machine
@@ -49,7 +51,7 @@ Run the below command to Install Docker in Ubuntu Machine
 sudo apt update
 sudo apt install docker.io
 ```
-[B70788-AD-608-F-4-C84-9790-4-ED32-AB0-DB20.png](https://postimg.cc/qN8ZTR3n)
+[![B70788-AD-608-F-4-C84-9790-4-ED32-AB0-DB20.png](https://i.postimg.cc/4xMCpH48/B70788-AD-608-F-4-C84-9790-4-ED32-AB0-DB20.png)](https://postimg.cc/qN8ZTR3n)
 
 ### Grant Jenkins user and Ubuntu user permission to docker deamon.
 
