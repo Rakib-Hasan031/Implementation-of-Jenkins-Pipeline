@@ -7,7 +7,7 @@ The project is a complete DevOps pipeline designed to automate and optimize the 
 Step1 : Create a jenkins machine using terraform script
 Create 1 Master machine on AWS with 2CPU, 8GB of RAM (t2.large) and 25 GB of storage and install Docker on it.
 
-![Jenkins EC2 Instanc] (https://postimg.cc/zVWwRhvb)
+![Jenkins EC2 Instanc](https://postimg.cc/zVWwRhvb)
 
 ## Step 1: Install Required Jenkins Plugins
 
