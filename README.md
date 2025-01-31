@@ -49,7 +49,8 @@ Run the below command to Install Docker in Ubuntu Machine
 sudo apt update
 sudo apt install docker.io
 ```
- 
+[B70788-AD-608-F-4-C84-9790-4-ED32-AB0-DB20.png](https://postimg.cc/qN8ZTR3n)
+
 ### Grant Jenkins user and Ubuntu user permission to docker deamon.
 
 ```
