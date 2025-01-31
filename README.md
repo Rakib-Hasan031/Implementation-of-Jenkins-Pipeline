@@ -67,6 +67,20 @@ Once you are done with the above steps, it is better to restart Jenkins.
 http://<ec2-instance-public-ip>:8080/restart
 ```
 
+### The Docker way
+
+Build the Docker Image
+
+```
+docker build -t ultimate-cicd-pipeline:v1 .
+```
+
+```
+docker run -d -p 8010:8080 -t ultimate-cicd-pipeline:v1
+```
+
+Access the application on `http://<ip-address>:8010` 
+
 ### Configure a Sonar Server locally
 
 ```
