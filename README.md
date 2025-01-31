@@ -5,22 +5,10 @@ The project is a complete DevOps pipeline designed to automate and optimize the 
 ![CI/CD Pipeline Architecture](https://user-images.githubusercontent.com/43399466/228301952-abc02ca2-9942-4a67-8293-f76647b6f9d8.png)
 
 Step1 : Create a jenkins machine using terraform script
-Create 1 Master machine on AWS with 2CPU, 8GB of RAM (t2.large) and 25 GB of storage and install Docker on it.
-
+Create 1 Master machine on AWS with 2CPU, 8GB of RAM (t2.large) and 25 GB of storage & Open the below ports in security group of master machine and also attach same security group to Jenkins worker node,
 [![1Capture.png](https://i.postimg.cc/GhgXVJ1Q/1Capture.png)](https://postimg.cc/zVWwRhvb)
 
-## Step 1: Install Required Jenkins Plugins
-
-Install the following plugins from Jenkins Dashboard > Manage Jenkins > Plugins:
-
-1. Git Plugin
-2. Maven Integration Plugin
-3. Pipeline Plugin
-4. Kubernetes Continuous Deploy Plugin
-5. Docker Pipeline Plugin
-6. SonarQube Scanner Plugin
-
-## Step 2: Create Jenkins Pipeline Job
+[![2Capture.png](https://i.postimg.cc/sD1F04Lj/2Capture.png)](https://postimg.cc/ykqrDcBt)
 
 ### Install Jenkins.
 
@@ -55,7 +43,7 @@ sudo apt-get install jenkins
 ```
 ## Docker Slave Configuration
 
-Run the below command to Install Docker
+Run the below command to Install Docker in Ubuntu Machine
 
 ```
 sudo apt update
@@ -76,6 +64,18 @@ Once you are done with the above steps, it is better to restart Jenkins.
 ```
 http://<ec2-instance-public-ip>:8080/restart
 ```
+## Install Required Jenkins Plugins
+
+Install the following plugins from Jenkins **Dashboard > Manage Jenkins > Plugins:**
+
+1. Git Plugin
+2. Maven Integration Plugin
+3. Pipeline Plugin
+4. Kubernetes Continuous Deploy (ArgoCD) Plugin
+5. Docker Pipeline Plugin
+6. SonarQube Scanner Plugin
+
+## Step 2: Create Jenkins Pipeline Job
 
 The docker agent configuration is now successful.
 
