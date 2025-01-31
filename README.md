@@ -66,6 +66,20 @@ Once you are done with the above steps, it is better to restart Jenkins.
 ```
 http://<ec2-instance-public-ip>:8080/restart
 ```
+
+### Configure a Sonar Server locally
+
+```
+apt install unzip
+adduser sonarqube
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.4.0.54424.zip
+unzip *
+chmod -R 755 /home/sonarqube/sonarqube-9.4.0.54424
+chown -R sonarqube:sonarqube /home/sonarqube/sonarqube-9.4.0.54424
+cd sonarqube-9.4.0.54424/bin/linux-x86-64/
+./sonar.sh start
+```
+
 ## Install Required Jenkins Plugins
 
 Install the following plugins from Jenkins **Dashboard > Manage Jenkins > Plugins:**
@@ -77,6 +91,8 @@ Install the following plugins from Jenkins **Dashboard > Manage Jenkins > Plugin
 5. Docker Pipeline Plugin
 6. SonarQube Scanner Plugin
 [![image.png](https://i.postimg.cc/kX4hwMpL/image.png)](https://postimg.cc/c6pmLWZc)
+[![image.png](https://i.postimg.cc/vT6xHVmp/image.png)](https://postimg.cc/BP4nmtHg)
+[![image.png](https://i.postimg.cc/jjghDys5/image.png)](https://postimg.cc/Z9NNgBvt)
 ## Step 2: Create Jenkins Pipeline Job
 
 The docker agent configuration is now successful.
@@ -94,22 +110,7 @@ The docker agent configuration is now successful.
 4. Select "Pipeline"
 5. Click "OK"
 
-## Next Steps
-
-### Configure a Sonar Server locally
-
-```
-apt install unzip
-adduser sonarqube
-wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.4.0.54424.zip
-unzip *
-chmod -R 755 /home/sonarqube/sonarqube-9.4.0.54424
-chown -R sonarqube:sonarqube /home/sonarqube/sonarqube-9.4.0.54424
-cd sonarqube-9.4.0.54424/bin/linux-x86-64/
-./sonar.sh start
-```
-
-## Step 3: Configure Pipeline Stages
+## Step 3: Configure Pipeline Stages (jenkinsfile)
 
 Here's a complete Jenkinsfile with all stages:
 
