@@ -106,9 +106,9 @@ Install the following plugins from Jenkins **Dashboard > Manage Jenkins > Plugin
 6. SonarQube Scanner Plugin
 [![image.png](https://i.postimg.cc/vT6xHVmp/image.png)](https://postimg.cc/BP4nmtHg)
 
-**1. Add Github credentials to push updated code from the pipeline:
+1. Add Github credentials to push updated code from the pipeline:
 2.  Add Sonarqube credentials for code scaning & vulnerability checking
-3.  Add credentials for docker login to push docker image**
+3.  Add credentials for docker login to push docker image
 
 [![image.png](https://i.postimg.cc/kX4hwMpL/image.png)](https://postimg.cc/c6pmLWZc)
 
@@ -126,93 +126,84 @@ The docker agent configuration is now successful.
 
 1. Go to Jenkins Dashboard
 2. Click "New Item"
-3. Enter job name (e.g., "java-cicd-pipeline")
+3. Enter job name (e.g., "CICD pipeline")
 4. Select "Pipeline"
 5. Click "OK"
-
+[![image.png](https://i.postimg.cc/2yKpT1F8/image.png)](https://postimg.cc/tnWm4CML)
 ## Step 3: Configure Pipeline Stages (jenkinsfile)
 
 Here's a complete Jenkinsfile with all stages:
 
 ```groovy
 pipeline {
-    agent any
-    
-    environment {
-        DOCKER_IMAGE = "your-docker-repo/java-app:${BUILD_NUMBER}"
-        KUBECONFIG = credentials('kubernetes-config')
+  agent {
+    docker {
+      image 'maven:3.8.1-openjdk-11'
+      args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
-    
-    stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'YOUR_REPO_URL'
+  }
+  stages {
+    stage('Checkout') {
+      steps {
+        sh 'echo passed'
+      }
+    }
+    stage('Build and Test') {
+      steps {
+        sh 'ls -ltr'
+        // build the project and create a JAR file
+        sh 'cd "Java based application/Java-spring-boot-Application" && mvn clean package'
+      }
+    }
+    stage('Static Code Analysis') {
+      environment {
+        SONAR_URL = "http://3.109.217.192:9000"
+      }
+      steps {
+        withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+          sh 'cd "Java based application/Java-spring-boot-Application" && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
+        }
+      }
+    }
+    stage('Build and Push Docker Image') {
+      environment {
+        DOCKER_IMAGE = "rakibhasan031/ultimate-cicd:${BUILD_NUMBER}"
+        // DOCKERFILE_LOCATION = "Java based application/Java-spring-boot-Applicatio/Dockerfile"
+        REGISTRY_CREDENTIALS = credentials('docker-cred')
+      }
+      steps {
+        script {
+            sh '''
+              apt-get update && apt-get install -y docker.io
+              cd "Java based application/Java-spring-boot-Application" && docker build -t ${DOCKER_IMAGE} .
+            '''
+            def dockerImage = docker.image("${DOCKER_IMAGE}")
+            docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
+                dockerImage.push()
             }
         }
-        
-        stage('Build') {
-            steps {
-                sh 'mvn clean package'
-            }
+      }
+    }
+    stage('Update Deployment File') {
+        environment {
+            GIT_REPO_NAME = "Implementation-of-Jenkins-Pipeline"
+            GIT_USER_NAME = "Rakib-Hasan031"
         }
-        
-        stage('Unit Tests') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-        
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar'
-                }
-            }
-        }
-        
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    docker.build(DOCKER_IMAGE)
-                }
-            }
-        }
-        
-        stage('Push Docker Image') {
-            steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker-credentials') {
-                        docker.image(DOCKER_IMAGE).push()
-                    }
-                }
-            }
-        }
-        
-        stage('Deploy to Test') {
-            steps {
-                sh "helm upgrade --install java-app ./helm/java-app --namespace test"
-            }
-        }
-        
-        stage('Integration Tests') {
-            steps {
-                sh 'mvn verify -Pintegration-tests'
-            }
-        }
-        
-        stage('Deploy to Production') {
-            steps {
-                sh "argocd app create java-app --repo YOUR_REPO_URL --path helm/java-app --dest-server https://kubernetes.default.svc --dest-namespace production"
+        steps {
+            withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+                sh '''
+                    git config user.email "hasanrakib373@gmail.com"
+                    git config user.name "Rakib Hasan"
+                    BUILD_NUMBER=${BUILD_NUMBER}
+                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" "Java based application/Mainfest-Repo/deployment.yml"
+                    git add -A
+                    git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                '''
             }
         }
     }
-    
-    post {
-        always {
-            junit '**/target/surefire-reports/*.xml'
-            cleanWs()
-        }
-    }
+  }
 }
 ```
 
