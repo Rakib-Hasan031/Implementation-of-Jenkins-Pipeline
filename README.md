@@ -100,7 +100,7 @@ Install the following plugins from Jenkins **Dashboard > Manage Jenkins > Plugin
 
 1. Git Plugin
 2. Maven Integration Plugin
-3. Pipeline Plugin
+3. Stage View Pipeline Plugin
 4. Kubernetes Continuous Deploy (ArgoCD) Plugin
 5. Docker Pipeline Plugin
 6. SonarQube Scanner Plugin
