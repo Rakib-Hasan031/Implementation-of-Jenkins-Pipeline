@@ -79,7 +79,7 @@ chown -R sonarqube:sonarqube /home/sonarqube/sonarqube-9.4.0.54424
 cd sonarqube-9.4.0.54424/bin/linux-x86-64/
 ./sonar.sh start
 ```
-
+[![AD642449-6604-48-E4-9-B6-E-E90-D7-CA12534.png](https://i.postimg.cc/fRWXYkq0/AD642449-6604-48-E4-9-B6-E-E90-D7-CA12534.png)](https://postimg.cc/qzYzTBTk)
 ## Install Required Jenkins Plugins
 
 Install the following plugins from Jenkins **Dashboard > Manage Jenkins > Plugins:**
