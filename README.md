@@ -6,6 +6,7 @@ The project is a complete DevOps pipeline designed to automate and optimize the 
 
 Step1 : Create a jenkins machine using terraform script
 Create 1 Master machine on AWS with 2CPU, 8GB of RAM (t2.large) and 25 GB of storage & Open the below ports in security group of master machine and also attach same security group to Jenkins worker node,
+
 [![1Capture.png](https://i.postimg.cc/GhgXVJ1Q/1Capture.png)](https://postimg.cc/zVWwRhvb)
 
 **Note: ** By default, Jenkins will not be accessible to the external world due to the inbound traffic restriction by AWS. Open port 8080 in the inbound traffic rules as show below.
@@ -71,7 +72,7 @@ systemctl restart docker
 Once you are done with the above steps, it is better to restart Jenkins.
 
 ```
-http://<ec2-instance-public-ip>:8080/restart
+http://http://3.109.217.192:8080/restart
 ```
 
 ### The Docker way
@@ -86,7 +87,7 @@ docker build -t ultimate-cicd-pipeline:v1 .
 docker run -d -p 8010:8080 -t ultimate-cicd-pipeline:v1
 ```
 
-Access the application on `http://<ip-address>:8010` 
+Access the application on `http://3.109.217.192:8010` 
 
 ### Configure a Sonar Server locally
 
