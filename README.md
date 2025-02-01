@@ -317,8 +317,25 @@ Meanwhile we want to run those on our browser, so first check with kubernetes se
 kubectl get svc
 kubectl edit svc example-argocd-server
 ```
-If want to run it on browser, so need to change type from ClusterIP to NodePort
+If want to run it on browser, so need to change type from ClusterIP to NodePort. Minikube service is minukube service where argocd-server is the name of the service. when we execute below command, minikube will generate a URL for you using it access in browser as well.
 
+```bash
+minikube service example-argocd-server
+minikube service list
+```
+[![B9-E4-C31-C-C415-432-E-9-B1-E-8-C84424-D12-B3.png](https://i.postimg.cc/7LPvz5Rc/B9-E4-C31-C-C415-432-E-9-B1-E-8-C84424-D12-B3.png)](https://postimg.cc/9DkN5QCt)
+[![C195-C053-B2-A5-4192-BB06-D5072-D0745-A2.png](https://i.postimg.cc/MZMC12sW/C195-C053-B2-A5-4192-BB06-D5072-D0745-A2.png)](https://postimg.cc/8sGXV3Q3)
+
+# ArgoCD password
+
+ArgoCD stores its password in secret which is called example-argocd-cluster & kubernetes secrets are base 64 encrypted
+
+```bash
+kubectl get secret
+kubectl edit secrect example-argocd-cluster [S3ZrSlNHaEE1cnVMeUMxbHAzZDZNTmp4Z290UjBiVHc=]
+echo S3ZrSlNHaEE1cnVMeUMxbHAzZDZNTmp4Z290UjBiVHc= | base64 -d [KvkJSGhA5ruLyC1lp3d6MNjxgotR0bTwubuntu]
+```
+[![3-DD3-B963-38-B0-410-E-B978-CD4601-C494-F4.png](https://i.postimg.cc/rmckQhzh/3-DD3-B963-38-B0-410-E-B978-CD4601-C494-F4.png)](https://postimg.cc/t1rwgN3P)
 ## Step 4: Set Up Required Tools
 
 ### Maven Setup
