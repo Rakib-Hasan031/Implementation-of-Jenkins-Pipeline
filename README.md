@@ -257,7 +257,7 @@ This Jenkins pipeline automates building, testing, static code analysis, Docker 
 
 ### Continuous Deployment (CD)
 
-#Install Minikube on Machine
+# Install Minikube on Machine
 ```bash
 curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
@@ -266,6 +266,21 @@ minikube start
 minikube status
 ```
 [![818-FB830-BDC4-49-D2-B928-66-A87632-FF34.png](https://i.postimg.cc/PxqtdpyT/818-FB830-BDC4-49-D2-B928-66-A87632-FF34.png)](https://postimg.cc/mc0xwrK5)
+
+# Install kubectl on Ubuntu
+```bash
+sudo apt update
+sudo apt install -y curl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+```
+``` bash kubectl version --client```
+
+# Install operator (ArgoCD) on minikube
+
+It helps to manage Kubernetes controller for any kind of update, provisioning or deployment.
+
 
 ## Step 4: Set Up Required Tools
 
