@@ -277,7 +277,7 @@ sudo mv kubectl /usr/local/bin/
 ```
 ``` bash kubectl version --client```
 
-# Install operator (ArgoCD) on minikube
+# Install ArgoCD operator on minikube
 
 It helps to manage Kubernetes controller for any kind of update, provisioning or deployment.
 ```bash
@@ -297,6 +297,18 @@ swapoff -a
 exit
 strace -eopenat kubectl version
 ```
+[![1830-C28-B-2583-4-C45-BF9-E-027-E2-AF4-F9-EF.png](https://i.postimg.cc/x8z38P32/1830-C28-B-2583-4-C45-BF9-E-027-E2-AF4-F9-EF.png)](https://postimg.cc/xN9zFMZx)
+
+# Install ArgoCD Controller on minikube
+
+```bash
+vim argocd-basic.yml
+kubectl apply -f argocd-basic.yml
+kubectl get pods
+```
+Now, ArgoCD workload is getting created
+[![44-FC4442-9-F21-42-DC-ACF0-6615828-F4327.png](https://i.postimg.cc/1tLDkqhY/44-FC4442-9-F21-42-DC-ACF0-6615828-F4327.png)](https://postimg.cc/G8xBY9pk)
+
 ## Step 4: Set Up Required Tools
 
 ### Maven Setup
