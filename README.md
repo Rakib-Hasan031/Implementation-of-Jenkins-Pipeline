@@ -120,7 +120,6 @@ Install the following plugins from Jenkins **Dashboard > Manage Jenkins > Plugin
 
 [![image.png](https://i.postimg.cc/kX4hwMpL/image.png)](https://postimg.cc/c6pmLWZc)
 
-[![image.png](https://i.postimg.cc/jjghDys5/image.png)](https://postimg.cc/Z9NNgBvt)
 ## Continuous Integration (CI) Pipeline: Create Jenkins Pipeline Job
 
 1. Go to Jenkins Dashboard
@@ -218,38 +217,39 @@ This Jenkins pipeline automates building, testing, static code analysis, Docker 
 
 📜 Description:
 
-    Lists files to verify directory structure.
-    Compiles the Java project using Maven.
-    Generates the JAR file for deployment.
+    1. Lists files to verify directory structure.
+    2. Compiles the Java project using Maven.
+    3. Generates the JAR file for deployment.
 
-
+[![image.png](https://i.postimg.cc/c4zgtT3P/image.png)](https://postimg.cc/Xpw7TfQg)
 
 3️⃣ Static Code Analysis (SonarQube)
 
 📜 Description:
 
-    Runs SonarQube analysis to check code quality, security vulnerabilities, and code smells.
-    Uses SonarQube credentials and the SonarQube server URL.
-
-
+    1. Runs SonarQube analysis to check code quality, security vulnerabilities, and code smells.
+    2. Uses SonarQube credentials and the SonarQube server URL.
+[![image.png](https://i.postimg.cc/5292NRnw/image.png)](https://postimg.cc/56GVsnc0)
+[![image.png](https://i.postimg.cc/wxn362mv/image.png)](https://postimg.cc/fkjMCx5n)
 
 4️⃣ Build and Push Docker Image
 
 📜 Description:
 
-    Installs Docker if not already available.
-    Builds a Docker image for the Java application.
-    Pushes the image to Docker Hub for deployment.
-
+    1. Installs Docker if not already available.
+    2. Builds a Docker image for the Java application.
+    3. Pushes the image to Docker Hub for deployment.
+    
+[![image.png](https://i.postimg.cc/jjghDys5/image.png)](https://postimg.cc/Z9NNgBvt)
 
 5️⃣ Update Deployment File
 
 📜 Description:
 
-    Updates the Kubernetes deployment YAML file with the new Docker image tag.
-    Commits the changes to GitHub.
+    1. Updates the Kubernetes deployment YAML file with the new Docker image tag.
+    2. Commits the changes to GitHub.
 
-
+[![image.png](https://i.postimg.cc/VvBzzqtG/image.png)](https://postimg.cc/RJFkRnXK)
 
 ## Step 4: Set Up Required Tools
 
