@@ -335,6 +335,8 @@ kubectl get secret
 kubectl edit secrect example-argocd-cluster [S3ZrSlNHaEE1cnVMeUMxbHAzZDZNTmp4Z290UjBiVHc=]
 echo S3ZrSlNHaEE1cnVMeUMxbHAzZDZNTmp4Z290UjBiVHc= | base64 -d [KvkJSGhA5ruLyC1lp3d6MNjxgotR0bTwubuntu]
 ```
+### Application Deployment
+
 [![3-DD3-B963-38-B0-410-E-B978-CD4601-C494-F4.png](https://i.postimg.cc/rmckQhzh/3-DD3-B963-38-B0-410-E-B978-CD4601-C494-F4.png)](https://postimg.cc/t1rwgN3P)
 ## Step 4: Set Up Required Tools
 
