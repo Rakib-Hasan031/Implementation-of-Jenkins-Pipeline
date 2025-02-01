@@ -283,14 +283,9 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 ```
 
-## Step 5: Configure Jenkins Credentials
+## CI Pipeline Output
 
-Add the following credentials in Jenkins (Dashboard > Manage Jenkins > Credentials):
-
-1. Git credentials (if using private repository)
-2. Docker registry credentials
-3. Kubernetes configuration file
-4. SonarQube token
+[![image.png](https://i.postimg.cc/sfcFDD8N/image.png)](https://postimg.cc/dDLN5vJ2)
 
 ## Step 6: Set Up SonarQube
 
