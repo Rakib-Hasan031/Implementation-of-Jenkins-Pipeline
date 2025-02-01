@@ -133,7 +133,7 @@ Install the following plugins from Jenkins **Dashboard > Manage Jenkins > Plugin
 ## Configure Pipeline Stages (jenkinsfile)
 
 Here's a complete Jenkinsfile with all stages:
-
+```groovy
 pipeline {
   agent {
     docker {
