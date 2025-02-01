@@ -251,6 +251,22 @@ This Jenkins pipeline automates building, testing, static code analysis, Docker 
 
 [![image.png](https://i.postimg.cc/VvBzzqtG/image.png)](https://postimg.cc/RJFkRnXK)
 
+## CI Pipeline Output
+
+[![image.png](https://i.postimg.cc/sfcFDD8N/image.png)](https://postimg.cc/dDLN5vJ2)
+
+### Continuous Deployment (CD)
+
+#Install Minikube on Machine
+```bash
+curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
+minikube version
+minikube start
+minikube status
+```
+[![818-FB830-BDC4-49-D2-B928-66-A87632-FF34.png](https://i.postimg.cc/PxqtdpyT/818-FB830-BDC4-49-D2-B928-66-A87632-FF34.png)](https://postimg.cc/mc0xwrK5)
+
 ## Step 4: Set Up Required Tools
 
 ### Maven Setup
@@ -282,10 +298,6 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 # Install Helm
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 ```
-
-## CI Pipeline Output
-
-[![image.png](https://i.postimg.cc/sfcFDD8N/image.png)](https://postimg.cc/dDLN5vJ2)
 
 ## Step 6: Set Up SonarQube
 
