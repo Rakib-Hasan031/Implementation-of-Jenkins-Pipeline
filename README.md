@@ -129,7 +129,7 @@ Install the following plugins from Jenkins **Dashboard > Manage Jenkins > Plugin
 4. Select "Pipeline"
 5. Click "OK"
 [![image.png](https://i.postimg.cc/2yKpT1F8/image.png)](https://postimg.cc/tnWm4CML)
-## Step 3: Configure Pipeline Stages (jenkinsfile)
+## Continuous Integration: Configure Pipeline Stages (jenkinsfile)
 
 Here's a complete Jenkinsfile with all stages:
 
