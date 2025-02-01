@@ -134,6 +134,77 @@ Install the following plugins from Jenkins **Dashboard > Manage Jenkins > Plugin
 
 Here's a complete Jenkinsfile with all stages:
 
+pipeline {
+  agent {
+    docker {
+      image 'maven:3.8.1-openjdk-11'
+      args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
+    }
+  }
+  stages {
+    stage('Checkout') {
+      steps {
+        sh 'echo passed'
+      }
+    }
+    stage('Build and Test') {
+      steps {
+        sh 'ls -ltr'
+        // build the project and create a JAR file
+        sh 'cd "Java based application/Java-spring-boot-Application" && mvn clean package'
+      }
+    }
+    stage('Static Code Analysis') {
+      environment {
+        SONAR_URL = "http://3.109.217.192:9000"
+      }
+      steps {
+        withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+          sh 'cd "Java based application/Java-spring-boot-Application" && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
+        }
+      }
+    }
+    stage('Build and Push Docker Image') {
+      environment {
+        DOCKER_IMAGE = "rakibhasan031/ultimate-cicd:${BUILD_NUMBER}"
+        // DOCKERFILE_LOCATION = "Java based application/Java-spring-boot-Applicatio/Dockerfile"
+        REGISTRY_CREDENTIALS = credentials('docker-cred')
+      }
+      steps {
+        script {
+            sh '''
+              apt-get update && apt-get install -y docker.io
+              cd "Java based application/Java-spring-boot-Application" && docker build -t ${DOCKER_IMAGE} .
+            '''
+            def dockerImage = docker.image("${DOCKER_IMAGE}")
+            docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
+                dockerImage.push()
+            }
+        }
+      }
+    }
+    stage('Update Deployment File') {
+        environment {
+            GIT_REPO_NAME = "Implementation-of-Jenkins-Pipeline"
+            GIT_USER_NAME = "Rakib-Hasan031"
+        }
+        steps {
+            withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+                sh '''
+                    git config user.email "hasanrakib373@gmail.com"
+                    git config user.name "Rakib Hasan"
+                    BUILD_NUMBER=${BUILD_NUMBER}
+                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" "Java based application/Mainfest-Repo/deployment.yml"
+                    git add -A
+                    git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                '''
+            }
+        }
+    }
+  }
+}
+
 This Jenkins pipeline automates building, testing, static code analysis, Docker image creation, and deployment file update for a Java Spring Boot Application.
 📌 Pipeline Stages Overview
 1️⃣ Checkout Code
