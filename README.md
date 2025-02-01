@@ -307,7 +307,17 @@ kubectl apply -f argocd-basic.yml
 kubectl get pods
 ```
 Now, ArgoCD workload is getting created
+
 [![44-FC4442-9-F21-42-DC-ACF0-6615828-F4327.png](https://i.postimg.cc/1tLDkqhY/44-FC4442-9-F21-42-DC-ACF0-6615828-F4327.png)](https://postimg.cc/G8xBY9pk)
+
+### From ArgoCD UI, pull the latest image (deployment.yml) from git repository on to the Kubernetes cluster using CD process
+
+Meanwhile we want to run those on our browser, so first check with kubernetes services where we can see which server is responsible for ArgoCD UI.
+```bash
+kubectl get svc
+kubectl edit svc example-argocd-server
+```
+If want to run it on browser, so need to change type from ClusterIP to NodePort
 
 ## Step 4: Set Up Required Tools
 
