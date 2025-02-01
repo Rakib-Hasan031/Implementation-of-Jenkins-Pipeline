@@ -280,8 +280,21 @@ sudo mv kubectl /usr/local/bin/
 # Install operator (ArgoCD) on minikube
 
 It helps to manage Kubernetes controller for any kind of update, provisioning or deployment.
-
-
+```bash
+curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.31.0/install.sh | bash -s v0.31.0
+kubectl create -f https://operatorhub.io/install/argocd-operator.yaml
+kubectl get pods -n operators
+```
+We found below error when try see running nodes & pods. 
+ubuntu@ip-172-31-41-89:~$ kubectl get nodes
+The connection to the server 192.168.49.2:8443 was refused - did you specify the right host or port?
+To avoid this error, use below command
+```bash
+sudo -i
+swapoff -a
+exit
+strace -eopenat kubectl version
+```
 ## Step 4: Set Up Required Tools
 
 ### Maven Setup
