@@ -340,103 +340,7 @@ echo S3ZrSlNHaEE1cnVMeUMxbHAzZDZNTmp4Z290UjBiVHc= | base64 -d [KvkJSGhA5ruLyC1lp
 [![3-DD3-B963-38-B0-410-E-B978-CD4601-C494-F4.png](https://i.postimg.cc/rmckQhzh/3-DD3-B963-38-B0-410-E-B978-CD4601-C494-F4.png)](https://postimg.cc/t1rwgN3P)
 ## Step 4: Set Up Required Tools
 
-### Maven Setup
-```bash
-# Install Maven
-sudo apt-get update
-sudo apt-get install maven
-
-# Verify installation
-mvn --version
-```
-
-### Docker Setup
-```bash
-# Install Docker
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-
-# Add Jenkins user to docker group
-sudo usermod -aG docker jenkins
-```
-
-### Kubernetes Setup
-```bash
-# Install kubectl
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-
-# Install Helm
-curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-```
-
-## Step 6: Set Up SonarQube
-
-1. Start SonarQube server:
-```bash
-docker run -d --name sonarqube -p 9000:9000 sonarqube:latest
-```
-
-2. Configure SonarQube in Jenkins:
-   - Install SonarQube Scanner plugin
-   - Add SonarQube server details in Jenkins configuration
-   - Add SonarQube webhook for quality gate checks
-
-## Step 7: Configure Argo CD
-
-1. Install Argo CD:
-```bash
-kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-```
-
-2. Access Argo CD UI:
-```bash
-kubectl port-forward svc/argocd-server -n argocd 8080:443
-```
-
-3. Get initial admin password:
-```bash
-kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
-```
-
-## Step 8: Run the Pipeline
-
-1. Go to your pipeline in Jenkins
-2. Click "Build Now"
-3. Monitor the pipeline execution
-4. Check logs for any errors
-
-## Troubleshooting
-
-Common issues and solutions:
-
-1. Docker permission denied
-```bash
-sudo chmod 666 /var/run/docker.sock
-```
-
-2. Kubernetes connection issues
-```bash
-# Verify kubeconfig
-kubectl config view
-```
-
-3. Maven build failures
-```bash
-# Clean Maven cache
-rm -rf ~/.m2/repository
-```
-
-## Security Considerations
-
-1. Always use Jenkins credentials for sensitive data
-2. Implement RBAC in Kubernetes
-3. Regularly update dependencies
-4. Scan Docker images for vulnerabilities
-5. Use network policies in Kubernetes
-
-## Support
+## Thank you
 
 For issues and questions:
 1. Create an issue in the repository
@@ -444,4 +348,4 @@ For issues and questions:
 3. Check Jenkins and Kubernetes logs
 
 ---
-Created by Rakib - DevOps Enthusiast
+Created by Rakib - DevOps Enthusiast (https://www.linkedin.com/in/rakibhasan031/)
